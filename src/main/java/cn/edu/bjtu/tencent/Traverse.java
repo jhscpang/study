@@ -301,4 +301,49 @@ public class Traverse {
         return leftHeight > rightHeight ? leftHeight : rightHeight;
     }
 
+    //计算是否存在路径值和为某个值得路径
+    public boolean hasPathSum(TreeNode root, int sum) {
+        if (root == null) {
+            return false;
+        } else {
+            if (root.left == null && root.right == null && root.val == sum) {
+                return true;
+            } else {
+                return (hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val));
+            }
+        }
+    }
+
+    //递归方式实现二叉树的反转
+    public TreeNode invertTree(TreeNode root) {
+        //递归解法
+        if (root != null) {
+            TreeNode temp = root.left;
+            root.left = root.right;
+            root.right = temp;
+            invertTree(root.left);
+            invertTree(root.right);
+        }
+        return root;
+    }
+
+    //非递归方式实现二叉树的反转
+    public TreeNode invertTree1(TreeNode root) {
+        //迭代解法
+        if (root == null) return null;
+        Deque<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode current = queue.poll();
+            TreeNode temp = current.left;
+            current.left = current.right;
+            current.right = temp;
+            if (current.left != null) queue.add(current.left);
+            if (current.right != null) queue.add(current.right);
+        }
+        return root;
+    }
+
+
+
 }
