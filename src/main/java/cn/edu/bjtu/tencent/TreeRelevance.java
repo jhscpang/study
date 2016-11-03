@@ -6,7 +6,7 @@ import java.util.LinkedList;
 /**
  * Created by pangchao on 2016/11/3.
  */
-public class Traverse {
+public class TreeRelevance {
 
     public static void main(String[] args) {
         // 前序遍历： 1 2 4 8 9 5 3 6 7
